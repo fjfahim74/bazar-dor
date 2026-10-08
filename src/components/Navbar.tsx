@@ -1,13 +1,7 @@
 import Image from "next/image";
-
 import logoIcon from "@/assets/logo-icon.png";
-
-interface Category {
-    id: string;
-    slug: string;
-    nameBn: string;
-    icon: string;
-}
+import { getBanglaDate } from "@/components/shared/utils";
+import type { Category } from "@/types/product";
 
 const Navbar = async () => {
     const response = await fetch(
@@ -35,12 +29,7 @@ const Navbar = async () => {
                         </h1>
 
                         <p className="text-xs text-base-content/60 sm:text-sm">
-                            {new Date().toLocaleDateString("bn-BD", {
-                                weekday: "long",
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                            })}
+                            {getBanglaDate()}
                         </p>
                     </div>
                 </div>

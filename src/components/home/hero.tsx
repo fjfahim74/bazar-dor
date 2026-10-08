@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getBanglaDate } from "@/components/shared/utils";
 
 import heroImage from "@/assets/bazar-hero.png";
 
@@ -10,12 +11,7 @@ const Hero = () => {
 
                 <div className="flex max-w-xl flex-col items-start">
                     <span className="mb-4 rounded-full bg-success/10 px-3 py-1 text-sm text-success">
-                        {new Date().toLocaleDateString("bn-BD", {
-                            weekday: "long",
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })}
+                        {getBanglaDate()}
                     </span>
 
                     <h1 className="text-3xl font-bold leading-tight md:text-4xl">

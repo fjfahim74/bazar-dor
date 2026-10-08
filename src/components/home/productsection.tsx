@@ -1,23 +1,6 @@
 import ProductCard from "@/components/home/productcard";
-
-interface Product {
-    id: number;
-    slug: string;
-    nameBn: string;
-    category: string;
-    categoryNameBn: string;
-    categoryIcon: string;
-    unit: string;
-    image: string;
-    today: number;
-    yesterday: number;
-    lastWeek: number;
-    lastMonth: number;
-    change: {
-        dir: "up" | "down" | "flat";
-        pct: number;
-    };
-}
+import { toBanglaNumber } from "@/components/shared/utils";
+import type { Product } from "@/types/product";
 
 const ProductSection = async () => {
     const response = await fetch(
@@ -35,15 +18,6 @@ const ProductSection = async () => {
         .filter((product) => product.change.dir === "down")
         .sort((a, b) => a.change.pct - b.change.pct)
         .slice(0, 6);
-
-    console.log("Risers:", risers);
-    console.log("Fallers:", fallers);
-
-    const toBanglaNumber = (number: number) => {
-        return number
-            .toString()
-            .replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[Number(digit)]);
-    };
 
     return (
         <section className="mx-auto max-w-7xl px-4 py-6">

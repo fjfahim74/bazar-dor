@@ -1,38 +1,18 @@
-interface Product {
-    id: number;
-    slug: string;
-    nameBn: string;
-    categoryNameBn: string;
-    unit: string;
-    image: string;
-    today: number;
-    change: {
-        dir: "up" | "down" | "flat";
-        pct: number;
-    };
-}
+import type { Product } from "@/types/product";
+import { toBanglaNumber, getBanglaUnit } from "@/components/shared/utils";
+import Link from "next/link";
 
 interface ProductCardProps {
     product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-    const getBanglaUnit = (unit: string) => {
-        if (unit === "kg") return "প্রতি কেজি";
-        if (unit === "litre") return "প্রতি লিটার";
-        if (unit === "dozen") return "প্রতি ডজন";
-        if (unit === "piece") return "প্রতি পিস";
-        return `প্রতি ${unit}`;
-    };
-
-    const toBanglaNumber = (number: number) => {
-        return number
-            .toString()
-            .replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[Number(digit)]);
-    };
 
     return (
-        <div className="rounded-2xl border border-base-content/15 bg-base-100 p-5">
+        <Link
+            href={`/product/${product.slug}`}
+            className="block rounded-2xl border border-base-content/15 bg-base-100 p-5 transition hover:-translate-y-1 hover:border-amber-400"
+        >
             <div className="flex items-center gap-3">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-base-300 text-3xl">
                     {product.image}
@@ -83,7 +63,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     )}
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
