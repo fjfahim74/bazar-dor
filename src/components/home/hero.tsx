@@ -18,7 +18,7 @@ const Hero = () => {
                         })}
                     </span>
 
-                    <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-4xl">
+                    <h1 className="text-3xl font-bold leading-tight md:text-4xl">
                         আজকের বাজারের দাম এক নজরে
                     </h1>
 
