@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Product, Market } from "@/types/product";
 import { toBanglaNumber, getBanglaUnit } from "@/components/shared/utils";
-
+import { API_BASE_URL } from "@/components/shared/api";
 interface ProductDetailsProps {
     params: Promise<{
         slug: string;
@@ -12,11 +12,11 @@ interface ProductDetailsProps {
 const ProductDetails = async ({ params }: ProductDetailsProps) => {
     const { slug } = await params;
 
-    const response = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/products"
+    const productsResponse = await fetch(
+        `${API_BASE_URL}/products`
     );
 
-    const products: Product[] = await response.json();
+    const products: Product[] = await productsResponse.json();
 
     const product = products.find((product) => product.slug === slug);
 
@@ -24,11 +24,11 @@ const ProductDetails = async ({ params }: ProductDetailsProps) => {
         notFound();
     }
 
-    const detailsResponse = await fetch(
-        `https://api.api-store.workers.dev/api/bazardor/products/${product.id}`
+    const productResponse = await fetch(
+        `${API_BASE_URL}/products/${product.id}`
     );
 
-    const details = await detailsResponse.json();
+    const details = await productsResponse.json();
 
     const minPrice = Math.min(
         ...details.markets.map((market: Market) => market.min)

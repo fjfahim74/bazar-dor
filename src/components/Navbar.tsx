@@ -2,11 +2,11 @@ import Image from "next/image";
 import logoIcon from "@/assets/logo-icon.png";
 import { getBanglaDate } from "@/components/shared/utils";
 import type { Category } from "@/types/product";
+import { API_BASE_URL } from "@/components/shared/api";
 
 const Navbar = async () => {
-    const response = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/categories"
-    );
+    "use cache";
+    const response = await fetch(`${API_BASE_URL}/categories`);
 
     const categories: Category[] = await response.json();
 

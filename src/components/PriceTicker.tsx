@@ -1,21 +1,10 @@
 import MarqueeText from "react-marquee-text";
-
-interface Product {
-    id: number;
-    nameBn: string;
-    image: string;
-    unit: string;
-    today: number;
-    change: {
-        dir: "up" | "down" | "flat";
-        pct: number;
-    };
-}
+import { API_BASE_URL } from "@/components/shared/api";
+import type { Product } from "@/types/product";
 
 const PriceTicker = async () => {
-    const response = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/products"
-    );
+    "use cache";
+    const response = await fetch(`${API_BASE_URL}/products`);
 
     const products: Product[] = await response.json();
 

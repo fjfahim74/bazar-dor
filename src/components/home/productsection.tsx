@@ -1,11 +1,11 @@
 import ProductCard from "@/components/home/productcard";
 import { toBanglaNumber } from "@/components/shared/utils";
 import type { Product } from "@/types/product";
+import { API_BASE_URL } from "@/components/shared/api";
 
 const ProductSection = async () => {
-    const response = await fetch(
-        "https://api.api-store.workers.dev/api/bazardor/products"
-    );
+    "use cache";
+    const response = await fetch(`${API_BASE_URL}/products`);
 
     const products: Product[] = await response.json();
 
