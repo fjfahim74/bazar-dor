@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import PriceTicker from "@/components/shared/PriceTicker";
 import Footer from "@/components/shared/Footer"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["bengali"],
@@ -22,12 +24,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden">
+
+        <Navbar />
+        <PriceTicker />
         <main>
-          <Navbar />
-          <PriceTicker />
           {children}
-          <Footer />
         </main>
+        <Footer />
+        <ToastContainer />
+
       </body>
     </html>
   );

@@ -4,6 +4,9 @@ import type { Product, Market } from "@/types/product";
 import { toBanglaNumber, getBanglaUnit } from "@/components/shared/utils";
 import { API_BASE_URL } from "@/components/shared/api";
 export const instant = false;
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
 
 interface ProductDetailsProps {
     params: Promise<{
@@ -12,6 +15,14 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = async ({ params }: ProductDetailsProps) => {
+
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session) {
+        redirect("/signin");
+    }
     const { slug } = await params;
 
     const productsResponse = await fetch(

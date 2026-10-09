@@ -30,9 +30,9 @@ const PriceTicker = async () => {
     return (
         <div className="border-y border-base-content/15 mt-2">
             <MarqueeText direction="right" duration={10}>
-                {changedProducts.map((product) => (
+                {[...changedProducts, ...changedProducts].map((product, index) => (
                     <div
-                        key={product.id}
+                        key={`${product.id}-${index}`}
                         className="flex items-center border-r border-base-content/15 px-3 text-xs sm:text-sm"
                     >
                         <div className="my-1 mx-2 flex items-center gap-0.5">
@@ -54,7 +54,7 @@ const PriceTicker = async () => {
 
                             {product.change.dir === "down" && (
                                 <span className="text-success ml-2">
-                                    <span className="relative top-px">▲</span>{" "}{toBanglaNumber(Math.abs(product.change.pct))}%
+                                    <span className="relative top-0.5">▼</span>{" "}{toBanglaNumber(Math.abs(product.change.pct))}%
                                 </span>
                             )}
 

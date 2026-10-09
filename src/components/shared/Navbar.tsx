@@ -3,6 +3,9 @@ import logoIcon from "@/assets/logo-icon.png";
 import { getBanglaDate } from "@/components/shared/utils";
 import type { Category } from "@/types/product";
 import { API_BASE_URL } from "@/components/shared/api";
+import UserInfo from "@/components/shared/UserInfo";
+import Link from "next/link";
+import CategoryNav from "@/components/shared/CategoryNav";
 
 const Navbar = async () => {
     "use cache";
@@ -15,49 +18,33 @@ const Navbar = async () => {
 
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
 
-                <div className="flex items-center gap-3">
-                    <Image
-                        src={logoIcon}
-                        alt="বাজার দর"
-                        width={40}
-                        height={40}
-                    />
+                <Link href='/'>
+                    <div className="flex items-center gap-3">
 
-                    <div>
-                        <h1 className="text-lg font-bold sm:text-xl">
-                            বাজার দর
-                        </h1>
+                        <Image
+                            src={logoIcon}
+                            alt="বাজার দর"
+                            width={40}
+                            height={40}
+                        />
 
-                        <p className="text-xs text-base-content/60 sm:text-sm">
-                            {getBanglaDate()}
-                        </p>
+
+                        <div>
+                            <h1 className="text-lg font-bold sm:text-xl">
+                                বাজার দর
+                            </h1>
+
+                            <p className="text-xs text-base-content/60 sm:text-sm">
+                                {getBanglaDate()}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                </Link>
 
-                <div className="flex items-center gap-2">
-                    <a href="/signin" className="btn btn-sm">
-                        সাইন ইন
-                    </a>
-
-                    <a href="/signup" className="btn btn-sm btn-primary">
-                        সাইন আপ
-                    </a>
-                </div>
+                <UserInfo />
             </div>
 
-            <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 pb-3">
-
-                {categories.map((category) => (
-                    <a
-                        key={category.id}
-                        href={`/category/${category.slug}`}
-                        className="flex items-center gap-1.5 rounded-md px-3 py-2 text-xs md:text-sm hover:bg-base-200"
-                    >
-                        <span>{category.icon}</span>
-                        <span>{category.nameBn}</span>
-                    </a>
-                ))}
-            </div>
+            <CategoryNav categories={categories} />
         </nav>
     );
 };
