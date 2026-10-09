@@ -3,6 +3,7 @@ import CategoryProducts from "@/components/category/CategoryProducts";
 import type { Category, Product } from "@/types/product";
 import { toBanglaNumber } from "@/components/shared/utils";
 import { API_BASE_URL } from "@/components/shared/api";
+export const instant = false;
 
 interface CategoryPageProps {
     params: Promise<{
@@ -11,6 +12,7 @@ interface CategoryPageProps {
 }
 
 const CategoryPage = async ({ params }: CategoryPageProps) => {
+    "use cache";
     const { slug } = await params;
 
     const categoryResponse = await fetch(

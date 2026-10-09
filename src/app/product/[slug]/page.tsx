@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import type { Product, Market } from "@/types/product";
 import { toBanglaNumber, getBanglaUnit } from "@/components/shared/utils";
 import { API_BASE_URL } from "@/components/shared/api";
+export const instant = false;
+
 interface ProductDetailsProps {
     params: Promise<{
         slug: string;
@@ -28,7 +30,7 @@ const ProductDetails = async ({ params }: ProductDetailsProps) => {
         `${API_BASE_URL}/products/${product.id}`
     );
 
-    const details = await productsResponse.json();
+    const details = await productResponse.json();
 
     const minPrice = Math.min(
         ...details.markets.map((market: Market) => market.min)
