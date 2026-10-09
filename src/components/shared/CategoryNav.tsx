@@ -21,8 +21,8 @@ const CategoryNav = ({ categories }: CategoryNavProps) => {
                         key={category.id}
                         href={`/category/${category.slug}`}
                         className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-xs md:text-sm ${isActive
-                                ? "bg-primary text-primary-content"
-                                : "hover:bg-base-200"
+                            ? "bg-[#05893E] text-primary-content"
+                            : "hover:bg-base-200"
                             }`}
                     >
                         <span>{category.icon}</span>

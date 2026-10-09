@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <Navbar />
         <PriceTicker />
-        <main>
+        <main className="flex-1">
           {children}
         </main>
         <Footer />

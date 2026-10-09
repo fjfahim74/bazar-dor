@@ -4,6 +4,8 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
+import Image from "next/image";
+import profile from "@/assets/profile.jpg";
 
 const UpdateProfilePage = () => {
     const router = useRouter();
@@ -46,14 +48,53 @@ const UpdateProfilePage = () => {
 
     return (
         <main className="mx-auto max-w-2xl px-4 py-10">
+            <div className="mb-8 mt-4">
+                <h1 className="text-3xl font-bold">আমার প্রোফাইল</h1>
+                <p className="mt-2 text-base-content/60">
+                    আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
+                </p>
+            </div>
+
+            <div className="mb-6 flex flex-col gap-4 rounded-2xl border border-base-content/15 bg-base-100 p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-4">
+                    <div className="size-16 overflow-hidden rounded-xl">
+                        <Image
+                            src={profile}
+                            alt="Profile"
+                            className="h-full w-full object-cover"
+                        />
+                    </div>
+
+                    <div>
+                        <h2 className="text-lg font-bold">
+                            {session.user.name}
+                        </h2>
+                        <p className="text-sm text-base-content/60">
+                            {session.user.email}
+                        </p>
+                    </div>
+                </div>
+
+                <button
+                    type="button"
+                    onClick={async () => {
+                        await authClient.signOut();
+                        router.push("/");
+                        router.refresh();
+                    }}
+                    className="btn btn-outline btn-error"
+                >
+                    ↩ সাইন আউট
+                </button>
+            </div>
+
             <div className="rounded-2xl border border-base-content/15 bg-base-100 p-6 sm:p-8">
-                <h1 className="mb-6 text-2xl font-bold">
-                    প্রোফাইল আপডেট
-                </h1>
+
+                <h2 className="mb-4 mt-0 text-xl font-bold">তথ্য</h2>
 
                 <form onSubmit={onSubmit} className="flex flex-col gap-4">
                     <fieldset className="fieldset">
-                        <label className="label">নাম</label>
+                        <label className="label text-[15px] text-gray-600 font-bold">নাম</label>
 
                         <input
                             name="name"
@@ -67,7 +108,7 @@ const UpdateProfilePage = () => {
 
                         <button
                             type="submit"
-                            className="btn btn-primary mt-4 w-full"
+                            className="btn bg-[#05893E] text-white mt-4 w-full"
                             disabled={isLoading}
                         >
                             {isLoading ? (
@@ -76,7 +117,7 @@ const UpdateProfilePage = () => {
                                     আপডেট হচ্ছে...
                                 </>
                             ) : (
-                                "তথ্য আপডেট করুন"
+                                "আপডেট"
                             )}
                         </button>
                     </fieldset>

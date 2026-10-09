@@ -4,6 +4,9 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
+import google from "@/assets/google.png"
+import github from "@/assets/github.png"
+import Image from "next/image";
 
 const SignInPage = () => {
     const router = useRouter();
@@ -83,37 +86,42 @@ const SignInPage = () => {
     };
 
     return (
-        <main className="mx-auto max-w-md px-4 py-10">
+        <main className="mx-auto max-w-md px-2 py-10">
+            <h1 className="text-center text-2xl font-bold">
+                সাইন ইন
+            </h1>
+
+            <p className="mt-2 mb-6 text-center text-sm text-base-content/70">
+                বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
+            </p>
             <div className="rounded-2xl border border-base-content/15 bg-base-100 p-6 sm:p-8">
-                <h1 className="mb-6 text-center text-2xl font-bold">
-                    সাইন ইন
-                </h1>
+
 
                 <form onSubmit={onSubmit} className="flex flex-col gap-4">
                     <fieldset className="fieldset">
-                        <label className="label">ইমেইল</label>
+                        <label className="label text-black font-bold">ইমেইল</label>
                         <input
                             name="email"
                             type="email"
-                            className="input w-full"
-                            placeholder="আপনার ইমেইল"
+                            className="input w-full outline-none"
+                            placeholder="you@example.com"
                             required
                             disabled={isLoading}
                         />
 
-                        <label className="label">পাসওয়ার্ড</label>
+                        <label className="label text-black font-bold">পাসওয়ার্ড</label>
                         <input
                             name="password"
                             type="password"
-                            className="input w-full"
-                            placeholder="পাসওয়ার্ড দিন"
+                            className="input w-full outline-none"
+                            placeholder="কমপক্ষে ৮ অক্ষর"
                             required
                             disabled={isLoading}
                         />
 
                         <button
                             type="submit"
-                            className="btn btn-primary mt-4 w-full"
+                            className="btn bg-[#05893E] mt-4 w-full text-white"
                             disabled={isLoading}
                         >
                             {isLoading ? (
@@ -122,7 +130,7 @@ const SignInPage = () => {
                                     সাইন ইন হচ্ছে...
                                 </>
                             ) : (
-                                "সাইন ইন করুন"
+                                "সাইন ইন"
                             )}
                         </button>
                     </fieldset>
@@ -130,56 +138,73 @@ const SignInPage = () => {
 
                 <div className="divider">অথবা</div>
 
-                <button
-                    type="button"
-                    onClick={handleGoogleSignIn}
-                    className="btn btn-outline w-full"
-                    disabled={isGoogleLoading || isGithubLoading || isLoading}
-                >
-                    {isGoogleLoading ? (
-                        <>
-                            <span className="loading loading-spinner"></span>
-                            Google দিয়ে সাইন ইন হচ্ছে...
-                        </>
-                    ) : (
-                        "Google দিয়ে সাইন ইন করুন"
-                    )}
-                </button>
+                <div className="flex w-full min-w-0 gap-2">
 
-                <div className="divider">অথবা</div>
+                    <button
+                        type="button"
+                        onClick={handleGoogleSignIn}
+                        className="btn border border-base-content/20 min-w-0 flex-1 gap-2 px-2"
+                        disabled={isGoogleLoading || isGithubLoading || isLoading}
+                    >
+                        {isGoogleLoading ? (
+                            <>
+                                <span className="loading loading-spinner"></span>
+                                Google দিয়ে সাইন ইন হচ্ছে...
+                            </>
+                        ) : (
+                            <>
+                                <Image src={google} alt="Google" width={18} height={18} />
+                                <span className="text-[13px]">
+                                    Google দিয়ে চালিয়ে যান
+                                </span>
+                            </>
+                        )}
+                    </button>
 
-                <button
-                    type="button"
-                    onClick={handleGithubSignIn}
-                    className="btn btn-outline w-full"
-                    disabled={isGithubLoading || isGoogleLoading || isLoading}
+                    <button
+                        type="button"
+                        onClick={handleGithubSignIn}
+                        className="btn border border-base-content/20 min-w-0 flex-1 gap-2 px-2 sm:text-sm"
+                        disabled={isGithubLoading || isGoogleLoading || isLoading}
 
-                >
-                    {isGithubLoading ? (
+                    >
+                        {isGithubLoading ? (
+                            <>
+                                <span className="loading loading-spinner"></span>
+                                GitHub দিয়ে সাইন ইন হচ্ছে...
+                            </>
+                        ) : (
+                            <>
+                                <Image src={github} alt="GitHub" width={18} height={18} />
+                                <span className="text-[13px]">
 
-                        <>
-                            <span className="loading loading-spinner"></span>
-                            GitHub দিয়ে সাইন ইন হচ্ছে...
-                        </>
-                    ) : (
-                        "GitHub দিয়ে সাইন ইন করুন"
-                    )}
+                                    GitHub দিয়ে চালিয়ে যান
+                                </span>
+                            </>
+                        )}
 
-                </button>
-
-
-
+                    </button>
+                </div>
 
                 <p className="mt-5 text-center text-sm">
                     অ্যাকাউন্ট নেই?{" "}
                     <a
                         href="/signup"
-                        className="font-semibold text-primary hover:underline"
+                        className="font-semibold text-[#05893E] hover:underline"
                     >
                         সাইন আপ করুন
                     </a>
                 </p>
             </div>
+            <div className="mt-6 text-center">
+                <a
+                    href="/"
+                    className="text-sm text-base-content/70 hover:text-primary"
+                >
+                    ← হোম পেজে ফিরে যান
+                </a>
+            </div>
+
         </main >
     );
 };

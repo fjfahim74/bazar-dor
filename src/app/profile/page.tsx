@@ -42,7 +42,7 @@ const ProfilePage = async () => {
 
                 <Link
                     href="/profile/update"
-                    className="btn btn-primary mt-6"
+                    className="btn bg-[#05893E] mt-6 text-white"
                 >
                     প্রোফাইল আপডেট করুন
                 </Link>
