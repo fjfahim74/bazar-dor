@@ -39,7 +39,7 @@ const CategoryProducts = ({
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className="select select-sm w-39 border-none outline-1"
+                        className="select select-sm w-39 border-none outline-1 text-sm leading-normal"
                     >
                         <option value="default">ডিফল্ট</option>
                         <option value="low-high">
