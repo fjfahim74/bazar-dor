@@ -98,7 +98,7 @@ const UpdateProfilePage = () => {
 
                             setIsSigningOut(false);
                             toast.success("সফলভাবে সাইন আউট হয়েছে!");
-                            router.replace("/");
+                            window.location.assign("/");
                         } catch {
                             setIsSigningOut(false);
                             toast.error("সাইন আউট করার সময় সমস্যা হয়েছে!");
