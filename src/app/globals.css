@@ -5,3 +5,19 @@
 html {
     overflow-y: scroll;
 }
+
+.product-sort-select {
+    width: 156px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid #a3a3a3;
+    border-radius: 6px;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: normal;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
