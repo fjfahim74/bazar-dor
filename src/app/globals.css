@@ -67,18 +67,23 @@ html {
 
 .price-summary {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    width: 100%;
 }
 
 .price-summary-value {
+    flex: 1;
     min-width: 0;
 }
 
 .price-change-badge {
     display: inline-flex;
+    flex-direction: row;
     align-items: center;
+    gap: 4px;
     white-space: nowrap;
     flex-shrink: 0;
 }
