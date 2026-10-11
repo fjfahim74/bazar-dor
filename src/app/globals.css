@@ -29,12 +29,12 @@ html {
 .footer-content {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 12px 16px;
+    padding: 12px 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    font-size: 10px;
+    gap: 6px;
+    font-size: 12px;
     color: inherit;
 }
 
@@ -49,6 +49,7 @@ html {
         padding: 24px 12px;
         flex-direction: row;
         justify-content: space-between;
+        gap: 16px;
     }
 
     .footer-content p {
