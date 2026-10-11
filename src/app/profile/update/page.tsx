@@ -1,8 +1,8 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import React from "react";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import profile from "@/assets/profile.jpg";
@@ -11,7 +11,6 @@ const UpdateProfilePage = () => {
     const router = useRouter();
     const { data: session, isPending } = authClient.useSession();
     const [isLoading, setIsLoading] = React.useState(false);
-    const [isSigningOut, setIsSigningOut] = React.useState(false);
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -42,12 +41,6 @@ const UpdateProfilePage = () => {
             setIsLoading(false);
         }
     };
-
-    useEffect(() => {
-        if (!isPending && !session && !isSigningOut) {
-            router.replace("/signin");
-        }
-    }, [isPending, session, isSigningOut, router]);
 
     if (isPending || !session) {
         return <p className="p-6 text-center">লোড হচ্ছে...</p>;
@@ -86,21 +79,19 @@ const UpdateProfilePage = () => {
                     type="button"
                     onClick={async () => {
 
-                        setIsSigningOut(true);
+
                         try {
                             const { error } = await authClient.signOut();
 
                             if (error) {
-                                setIsSigningOut(false);
+
                                 toast.error("সাইন আউট করা যায়নি!");
                                 return;
                             }
 
-                            setIsSigningOut(false);
                             toast.success("সফলভাবে সাইন আউট হয়েছে!");
                             window.location.assign("/");
                         } catch {
-                            setIsSigningOut(false);
                             toast.error("সাইন আউট করার সময় সমস্যা হয়েছে!");
                         }
                     }}
