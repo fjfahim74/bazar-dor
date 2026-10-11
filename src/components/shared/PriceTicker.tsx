@@ -54,7 +54,7 @@ const PriceTicker = async () => {
 
                             {product.change.dir === "down" && (
                                 <span className="text-success ml-2">
-                                    <span className="price-arrow mt-[2px]">▼</span>{" "}{toBanglaNumber(Math.abs(product.change.pct))}%
+                                    <span className="price-arrow">▼</span>{" "}{toBanglaNumber(Math.abs(product.change.pct))}%
                                 </span>
                             )}
 

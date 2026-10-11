@@ -146,7 +146,7 @@ const ProductDetails = async ({ params }: ProductDetailsProps) => {
 
                             {details.change.dir === "down" && (
                                 <span className="price-change-badge rounded-full bg-success/10 px-2 py-1 text-sm font-medium text-success">
-                                    <span className="price-arrow mt-[1px]">▼</span>{" "}
+                                    <span className="price-arrow]">▼</span>{" "}
                                     {toBanglaNumber(
                                         Math.abs(details.change.pct)
                                     )}
