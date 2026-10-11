@@ -8,7 +8,7 @@ import Link from "next/link";
 import CategoryNav from "@/components/shared/CategoryNav";
 
 const Navbar = async () => {
-    "use cache";
+
     const response = await fetch(`${API_BASE_URL}/categories`);
 
     const categories: Category[] = await response.json();

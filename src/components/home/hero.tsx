@@ -2,17 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import heroImage from "@/assets/bazar-hero.png";
 import BanglaDate from "@/components/shared/BanglaDate";
-import { connection } from "next/server";
+import { Suspense } from "react";
 
 const Hero = async () => {
-    await connection();
     return (
         <section className="w-full px-4 py-8 md:py-10">
             <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 rounded-3xl border border-base-content/10 bg-base-200 p-6 sm:p-10 lg:flex-row lg:p-6">
 
                 <div className="flex max-w-xl flex-col items-start">
                     <span className="mb-4 rounded-full bg-success/10 px-3 py-1 text-sm text-success">
-                        <BanglaDate />
+                        <Suspense fallback={<span>তারিখ লোড হচ্ছে...</span>}>
+                            <BanglaDate />
+                        </Suspense>
                     </span>
 
                     <h1 className="text-3xl font-bold leading-tight md:text-4xl">

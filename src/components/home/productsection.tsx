@@ -4,7 +4,7 @@ import type { Product } from "@/types/product";
 import { API_BASE_URL } from "@/components/shared/api";
 
 const ProductSection = async () => {
-    "use cache";
+
     const response = await fetch(`${API_BASE_URL}/products`);
 
     const products: Product[] = await response.json();
@@ -24,7 +24,7 @@ const ProductSection = async () => {
 
             <div className="mb-10">
                 <h2 className="text-2xl font-bold mb-4">
-                    <span className="text-[15px] text-red-600 mr-1">▲</span>
+                    <span className="price-arrow text-[15px] text-red-600 mr-1">▲</span>
                     আজ দাম বেড়েছে
                 </h2>
 
@@ -40,7 +40,7 @@ const ProductSection = async () => {
 
             <div>
                 <h2 className="text-2xl font-bold mb-4">
-                    <span className="text-[15px] text-green-600 mr-1">▼</span>
+                    <span className="price-arrow text-[15px] text-green-600 mr-1">▼</span>
                     আজ দাম কমেছে
                 </h2>
 

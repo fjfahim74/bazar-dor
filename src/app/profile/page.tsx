@@ -2,7 +2,6 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-export const instant = false;
 
 const ProfilePage = async () => {
     const session = await auth.api.getSession({

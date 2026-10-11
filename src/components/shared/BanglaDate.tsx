@@ -7,3 +7,4 @@ const BanglaDate = () => {
 };
 
 export default BanglaDate;
+

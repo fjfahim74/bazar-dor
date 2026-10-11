@@ -3,7 +3,7 @@ import { API_BASE_URL } from "@/components/shared/api";
 import type { Product } from "@/types/product";
 
 const PriceTicker = async () => {
-    "use cache";
+
     const response = await fetch(`${API_BASE_URL}/products`);
 
     const products: Product[] = await response.json();
@@ -48,13 +48,13 @@ const PriceTicker = async () => {
 
                             {product.change.dir === "up" && (
                                 <span className="text-error ml-2">
-                                    <span className="relative top-px">▲</span>{" "} {toBanglaNumber(product.change.pct)}%
+                                    <span className="price-arrow">▲</span>{" "} {toBanglaNumber(product.change.pct)}%
                                 </span>
                             )}
 
                             {product.change.dir === "down" && (
                                 <span className="text-success ml-2">
-                                    <span className="relative top-0.5">▼</span>{" "}{toBanglaNumber(Math.abs(product.change.pct))}%
+                                    <span className="price-arrow mt-[2px]">▼</span>{" "}{toBanglaNumber(Math.abs(product.change.pct))}%
                                 </span>
                             )}
 

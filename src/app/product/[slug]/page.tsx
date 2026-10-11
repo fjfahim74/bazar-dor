@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import type { Product, Market } from "@/types/product";
 import { toBanglaNumber, getBanglaUnit } from "@/components/shared/utils";
 import { API_BASE_URL } from "@/components/shared/api";
-export const instant = false;
 
 interface ProductDetailsProps {
     params: Promise<{
@@ -132,22 +131,22 @@ const ProductDetails = async ({ params }: ProductDetailsProps) => {
                             আজকের দাম
                         </p>
 
-                        <div className="mt-2 flex items-center gap-3">
-                            <p className="text-2xl font-bold sm:text-3xl">
+                        <div className="price-summary mt-2">
+                            <p className="price-summary-value text-2xl font-bold sm:text-3xl">
                                 ৳{toBanglaNumber(details.today)} টাকা /{" "}
                                 {getBanglaUnit(details.unit)}
                             </p>
 
                             {details.change.dir === "up" && (
-                                <span className="rounded-full bg-error/10 px-2 py-1 text-sm font-medium text-error">
-                                    ▲
+                                <span className="price-change-badge rounded-full bg-error/10 px-2 py-1 text-sm font-medium text-error">
+                                    <span className="price-arrow">▲</span>
                                     {toBanglaNumber(details.change.pct)}%
                                 </span>
                             )}
 
                             {details.change.dir === "down" && (
-                                <span className="rounded-full bg-success/10 px-2 py-1 text-sm font-medium text-success">
-                                    ▼{" "}
+                                <span className="price-change-badge rounded-full bg-success/10 px-2 py-1 text-sm font-medium text-success">
+                                    <span className="price-arrow mt-[1px]">▼</span>{" "}
                                     {toBanglaNumber(
                                         Math.abs(details.change.pct)
                                     )}
